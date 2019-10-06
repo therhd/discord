@@ -13,4 +13,4 @@ class MyClient(discord.Client):
             await message.channel.send('pong')
 
 client = MyClient()
-client.run(config.token)
+client.run(config.discordToken)

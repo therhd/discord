@@ -8,12 +8,12 @@ class MyClient(discord.Client):
 
     async def on_message(self, message):
         print(message)
-        
+
         if message.author == self.user:
             return
 
         if message.content == '!packtpub':
-            await message.channel.send('\n' + packt.getDailyString())
+            await message.channel.send(packt.getDailyString())
 
 if __name__ == "__main__":
     client = MyClient()

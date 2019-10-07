@@ -6,7 +6,6 @@ discordToken = os.environ.get('discordToken')
 if (discordToken is None):
     import config
     discordToken = config.discordToken
-print(discordToken)
 
 class MyClient(discord.Client):
     async def on_ready(self):

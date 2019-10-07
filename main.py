@@ -1,6 +1,12 @@
 import discord
-import config
 import packt
+import os
+
+discordToken = os.environ.get('discordToken')
+if (discordToken is None):
+    import config
+    discordToken = config.discordToken
+print(discordToken)
 
 class MyClient(discord.Client):
     async def on_ready(self):
@@ -15,4 +21,4 @@ class MyClient(discord.Client):
 
 if __name__ == "__main__":
     client = MyClient()
-    client.run(config.discordToken)
+    client.run(discordToken)

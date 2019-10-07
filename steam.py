@@ -1,14 +1,19 @@
-import config
 import requests
 import json
 import pandas as pd
+import os
+
+steamAPIKey = os.environ.get('steamAPIKey')
+if (steamAPIKey is None):
+    import config
+    steamAPIKey = config.steamAPIKey
 
 steamID = '76561198001353738'
 
 def test():
 
     url = 'https://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key={0}&steamid={1}&format=json'
-    page = requests.get(url.format(config.steamAPIKey, steamID))
+    page = requests.get(url.format(steamAPIKey, steamID))
     if (page.status_code is 200):
         data = json.loads(page.content)
         df = pd.DataFrame(data['response']['games'])
@@ -16,7 +21,7 @@ def test():
 
         url2 = 'http://api.steampowered.com/ISteamUserStats/GetSchemaForGame/v2/?key={0}&appid={1}'
         for index, game in df.iterrows():
-            page = requests.get(url2.format(config.steamAPIKey, game['appid']))
+            page = requests.get(url2.format(steamAPIKey, game['appid']))
             if (page.status_code is 200):
                 data = json.loads(page.content)
                 try:

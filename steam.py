@@ -13,5 +13,16 @@ def test():
         data = json.loads(page.content)
         df = pd.DataFrame(data['response']['games'])
         print(df.sort_values(by=['playtime_forever'], ascending=False))
+
+        url2 = 'http://api.steampowered.com/ISteamUserStats/GetSchemaForGame/v2/?key={0}&appid={1}'
+        for index, game in df.iterrows():
+            page = requests.get(url2.format(config.steamAPIKey, game['appid']))
+            if (page.status_code is 200):
+                data = json.loads(page.content)
+                try:
+                    print(data['game']['gameName'])
+                except:
+                    print('noname')
+
 if __name__ == "__main__":
     test()

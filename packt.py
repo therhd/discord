@@ -12,8 +12,11 @@ def getDaily(date = datetime.datetime.now()):
 
     offersReq = requests.get(URL)
     offers = json.loads(offersReq.content)
-    summary = json.loads(requests.get(summaryURL.format(offers['data'][0]['productId'])).content)
-    return({'summary': summary, 'sale': offers['data'][0]})
+    try:
+        summary = json.loads(requests.get(summaryURL.format(offers['data'][0]['productId'])).content)
+        return({'summary': summary, 'sale': offers['data'][0]})
+    except:
+        return(False)
 
 def getDailyString():
     deal = getDaily()
@@ -24,7 +27,8 @@ def getFuture(days = 7):
         date = datetime.datetime.now() + datetime.timedelta(hours=(i * 24))
         end = date + datetime.timedelta(hours=24)
         deal = getDaily(date)
-        print('{0} T00:00Z - {1} T00:00Z: {2}'.format(date.strftime('%Y-%m-%d'), end.strftime('%Y-%m-%d'), deal['summary']['title']))
+        if (deal is not False):
+            print('{0} T00:00Z - {1} T00:00Z: {2}'.format(date.strftime('%Y-%m-%d'), end.strftime('%Y-%m-%d'), deal['summary']['title']))
 
 if __name__ == "__main__":
     #print(getDailyString())

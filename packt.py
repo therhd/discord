@@ -20,7 +20,10 @@ def getDaily(date = datetime.datetime.now()):
 
 def getDailyString():
     deal = getDaily()
-    return('Today\'s free item is: {0}\n{1}\nExpires at {2}\n{3}'.format(deal['summary']['title'], deal['summary']['oneLiner'], deal['sale']['expiresAt'], saleURL))
+    if (deal is not False):
+        return('Today\'s free item is: {0}\n{1}\nExpires at {2}\n{3}'.format(deal['summary']['title'], deal['summary']['oneLiner'], deal['sale']['expiresAt'], saleURL))
+    else:
+        return('Was not able to check')
 
 def getFuture(days = 7):
     for i in range(1, days + 1):

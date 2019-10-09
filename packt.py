@@ -34,5 +34,5 @@ def getFuture(days = 7):
             print('{0} T00:00Z - {1} T00:00Z: {2}'.format(date.strftime('%Y-%m-%d'), end.strftime('%Y-%m-%d'), deal['summary']['title']))
 
 if __name__ == "__main__":
-    #print(getDailyString())
-    getFuture(30)
+    print(getDailyString())
+    #getFuture(30)

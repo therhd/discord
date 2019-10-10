@@ -4,9 +4,6 @@ import pandas as pd
 import os
 
 steamAPIKey = os.environ.get('steamAPIKey')
-if (steamAPIKey is None):
-    import config
-    steamAPIKey = config.steamAPIKey
 
 steamID = '76561198001353738'
 

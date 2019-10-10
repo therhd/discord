@@ -34,7 +34,7 @@ class MyClient(discord.Client):
             restaurants = guestrant.getRestaurants()
             await message.channel.send('!guestrant menu [restaurant]\nChoose from list: {}'.format(str(restaurants)[1:-1].replace("'", "")))
 
-        if len(message.content.split(' ')) == 3:
+        if len(message.content.split(' ')) == 3 and message.content.split(' ')[0] == '!guestrant' and message.content.split(' ')[1] == 'menu':
             arg = message.content.split(' ')[2]
             restaurants = guestrant.getRestaurants()
             if arg in restaurants:

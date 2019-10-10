@@ -1,8 +1,8 @@
 import requests
 from bs4 import BeautifulSoup
 
-baseurl = 'http://www.guestraunt.com/{}'
-url = 'http://www.guestraunt.com/arborlakes'
+baseurl = 'https://www.guestraunt.com/{}'
+url = 'https://www.guestraunt.com/arborlakes'
 
 # Eventually rewrite so we're a class/object with an initialize function that sets its attributes
 # For now, just make it work

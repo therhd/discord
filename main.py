@@ -4,6 +4,7 @@ import os
 import aiohttp
 import guestrant
 import io
+import humble
 
 discordToken = os.environ.get('discordToken')
 
@@ -20,6 +21,9 @@ class MyClient(discord.Client):
 
         if message.content == '!packtpub':
             await message.channel.send(packt.getDailyString())
+        
+        if message.content == '!humble':
+            await message.channel.send(humble.getBundlesString())
 
         if message.content == '!guestrant':
             async with aiohttp.ClientSession() as session:

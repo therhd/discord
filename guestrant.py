@@ -43,10 +43,20 @@ def getRestaurants():
     else:
         return(None)
 
-def getMenu(restaurant):
+def getMenuURL(restaurant):
     response = requests.get(baseurl.format(restaurant))
     if(response.status_code == 200):
-        print(response.content)
+        soup = BeautifulSoup(response.content, 'html.parser')
+        images = soup.find_all('img')
+        for image in images:
+            if(image.get('src') is not None):
+                if('.gif' in image.get('src').lower()):
+                    return(image.get('src'))
+        for image in images:
+            if('menu' in image.get('alt').lower()):
+                return(image.get('src'))
+    else:
+        return(None)
 
 if __name__ == "__main__":
-    print(getMenu('la-marsa'))
+    print(getMenuURL('ahmos'))

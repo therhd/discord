@@ -6,7 +6,7 @@ offersURL = 'https://services.packtpub.com/free-learning-v1/offers?dateFrom={0}T
 summaryURL = 'https://static.packt-cdn.com/products/{}/summary'
 saleURL = 'https://www.packtpub.com/free-learning'
 
-def getDaily(date = datetime.datetime.now()):
+def getDaily(date = datetime.datetime.now(datetime.timezone.utc)):
     end = date + datetime.timedelta(hours=24)
     URL = offersURL.format(date.strftime('%Y-%m-%d'), end.strftime('%Y-%m-%d'))
 
@@ -27,7 +27,7 @@ def getDailyString():
 
 def getFuture(days = 7):
     for i in range(1, days + 1):
-        date = datetime.datetime.now() + datetime.timedelta(hours=(i * 24))
+        date = datetime.datetime.now(datetime.timezone.utc) + datetime.timedelta(hours=(i * 24))
         end = date + datetime.timedelta(hours=24)
         deal = getDaily(date)
         if (deal is not False):
@@ -35,4 +35,4 @@ def getFuture(days = 7):
 
 if __name__ == "__main__":
     print(getDailyString())
-    #getFuture(30)
+    getFuture(7)

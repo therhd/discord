@@ -4,10 +4,8 @@ from bs4 import BeautifulSoup
 
 url = 'https://humblebundle.com/'
 productURL = 'https://www.humblebundle.com{0}?partner={1}'
-partnerCode = 'rhd'
+partnerCode = 'rhd' # Move this over to environment variable later
 
-# Eventually rewrite so we're a class/object with an initialize function that sets its attributes
-# For now, just make it work
 # Also, rewrite to replace 'requests' with 'aiohttp'
 
 def getBundles():

@@ -6,7 +6,9 @@ offersURL = 'https://services.packtpub.com/free-learning-v1/offers?dateFrom={0}T
 summaryURL = 'https://static.packt-cdn.com/products/{}/summary'
 saleURL = 'https://www.packtpub.com/free-learning'
 
-def getDaily(date = datetime.datetime.now(datetime.timezone.utc)):
+def getDaily(date = None):
+    if (date is None):
+        date = datetime.datetime.now(datetime.timezone.utc)
     end = date + datetime.timedelta(hours=24)
     URL = offersURL.format(date.strftime('%Y-%m-%d'), end.strftime('%Y-%m-%d'))
 

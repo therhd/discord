@@ -5,6 +5,9 @@ import aiohttp
 import guestrant
 import io
 import humble
+import datetime
+import asyncio
+import time
 
 discordToken = os.environ.get('discordToken')
 
@@ -52,6 +55,17 @@ class MyClient(discord.Client):
             else:
                 await message.channel.send('Whoops, **{0}** was not in my list. Try again. Valid restaurants: {1}'.format(arg, str(restaurants)[1:-1].replace("'", "")))
 
+
+async def water():
+    await client.wait_until_ready()
+    while not client.is_closed():
+        channel = client.get_channel(643828501035876363)
+        await channel.send('DRINK WATER')
+        await asyncio.sleep(2)
+
+
+
 if __name__ == "__main__":
     client = MyClient()
+    water_task = client.loop.create_task(water())
     client.run(discordToken)

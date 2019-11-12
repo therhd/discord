@@ -60,8 +60,10 @@ async def water():
     await client.wait_until_ready()
     while not client.is_closed():
         channel = client.get_channel(643828501035876363)
-        await channel.send('DRINK WATER')
-        await asyncio.sleep(2)
+        now = datetime.datetime.now()
+        if now.hour > 6 and now.hour < 18:
+            await channel.send('DRINK WATER')
+        await asyncio.sleep(2*60*60)
 
 
 

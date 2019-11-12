@@ -65,7 +65,7 @@ async def water():
         now = datetime.datetime.now()
         if now.hour > 6 and now.hour < 18:
             g_api = giphy_client.DefaultApi()
-            response = g_api.gifs_search_get(giphyToken, 'drink water', limit=20, rating='g')
+            response = g_api.gifs_search_get(giphyToken, 'water', limit=50, rating='g')
             gif = random.choices(response.data)
             await channel.send('DRINK WATER\n{}'.format(gif[0].url))
         await asyncio.sleep(2*60*60)

@@ -7,9 +7,11 @@ import io
 import humble
 import datetime
 import asyncio
-import time
+import giphy_client
+import random
 
 discordToken = os.environ.get('discordToken')
+giphyToken = os.environ.get('giphyToken')
 
 class MyClient(discord.Client):
     async def on_ready(self):
@@ -62,7 +64,10 @@ async def water():
         channel = client.get_channel(643828501035876363)
         now = datetime.datetime.now()
         if now.hour > 6 and now.hour < 18:
-            await channel.send('DRINK WATER')
+            g_api = giphy_client.DefaultApi()
+            response = g_api.gifs_search_get(giphyToken, 'drink water', limit=20, rating='g')
+            gif = random.choices(response.data)
+            await channel.send('DRINK WATER\n{}'.format(gif[0].url))
         await asyncio.sleep(2*60*60)
 
 

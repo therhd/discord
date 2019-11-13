@@ -25,8 +25,11 @@ def getBundlesString():
     uriList = []
     for bundle in bundles:
         if('monthly' not in bundle.get('bundle_machine_name')):
-            uriList.append(productURL.format(bundle.get('product_url'), partnerCode))
+            uriList.append(bundle_to_link(bundle))
     return('\n'.join(uriList))
+
+def bundle_to_link(bundle):
+    return productURL.format(bundle.get('product_url'), partnerCode)
 
 
 if __name__ == "__main__":

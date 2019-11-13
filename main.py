@@ -82,6 +82,18 @@ async def packt_check():
                 await channel.send(curr_deal)
         await asyncio.sleep(60*60)
 
+async def humble_check():
+    await client.wait_until_ready()
+    known_bundles = humble.getBundles() # Check it immediately, since I restart the bot for code changes often. 
+    while not client.is_closed():
+        for bundle in humble.getBundles():
+            if bundle not in known_bundles:
+                known_bundles.add(bundle)
+                channels = [client.get_channel(632020894604328970), client.get_channel(630078078349213707)]
+                for channel in channels:
+                    await channel.send(humble.bundle_to_link(bundle))
+        await asyncio.sleep(60*60)
+
 
 
 if __name__ == "__main__":

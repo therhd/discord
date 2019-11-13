@@ -100,4 +100,5 @@ if __name__ == "__main__":
     client = MyClient()
     water_task = client.loop.create_task(water())
     packt_task = client.loop.create_task(packt_check())
+    humble_task = client.loop.create_task(humble_check())
     client.run(discordToken)

@@ -79,7 +79,7 @@ async def packt_check():
             old_deal = curr_deal
             channels = [client.get_channel(632020894604328970), client.get_channel(630078078349213707)]
             for channel in channels:
-                channel.send(curr_deal)
+                await channel.send(curr_deal)
         await asyncio.sleep(60*60)
 
 

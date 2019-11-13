@@ -70,9 +70,22 @@ async def water():
             await channel.send('DRINK WATER\n{}'.format(gif[0].url))
         await asyncio.sleep(2*60*60)
 
+async def packt_check():
+    await client.wait_until_ready()
+    old_deal = ''
+    while not client.is_closed():
+        curr_deal = packt.getDailyString()
+        if old_deal != curr_deal:
+            old_deal = curr_deal
+            channels = [client.get_channel(632020894604328970), client.get_channel(630078078349213707)]
+            for channel in channels:
+                channel.send(curr_deal)
+        await asyncio.sleep(60*60)
+
 
 
 if __name__ == "__main__":
     client = MyClient()
     water_task = client.loop.create_task(water())
+    packt_task = client.loop.create_task(packt_check())
     client.run(discordToken)

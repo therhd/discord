@@ -88,7 +88,7 @@ async def humble_check():
     while not client.is_closed():
         for bundle in humble.getBundles():
             if bundle not in known_bundles:
-                known_bundles.add(bundle)
+                known_bundles.append(bundle)
                 channels = [client.get_channel(632020894604328970), client.get_channel(630078078349213707)]
                 for channel in channels:
                     await channel.send(humble.bundle_to_link(bundle))

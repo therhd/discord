@@ -72,7 +72,7 @@ async def water():
 
 async def packt_check():
     await client.wait_until_ready()
-    old_deal = ''
+    old_deal = packt.getDailyString() # Check it immediately, since I restart the bot for code changes often. 
     while not client.is_closed():
         curr_deal = packt.getDailyString()
         if old_deal != curr_deal:

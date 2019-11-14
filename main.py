@@ -60,15 +60,27 @@ class MyClient(discord.Client):
 
 async def water():
     await client.wait_until_ready()
+    trigger_times = [9, 12, 14, 16]
     while not client.is_closed():
-        channel = client.get_channel(643828501035876363)
+        # Wrap this into a function next time you re-use it.
         now = datetime.datetime.now()
-        if now.hour > 6 and now.hour < 18:
-            g_api = giphy_client.DefaultApi()
-            response = g_api.gifs_search_get(giphyToken, 'water', limit=50, rating='g')
-            gif = random.choices(response.data)
-            await channel.send('DRINK WATER\n{}'.format(gif[0].url))
-        await asyncio.sleep(2*60*60)
+        next = None
+        for time in trigger_times:
+            if time > now.hour:
+                next = datetime.datetime(year=now.year, month=now.month, 
+                                day=now.day, hour=time, minute=0, second=0)
+                break
+        if next == None:
+            tomorrow = datetime.timedelta(1) + now
+            next = datetime.datetime(year=tomorrow.year, month=tomorrow.month, day=tomorrow.day, hour=trigger_times[0], minute=0, second=0)
+        sleep_time = (next - now).seconds
+        await asyncio.sleep(sleep_time)
+
+        g_api = giphy_client.DefaultApi()
+        response = g_api.gifs_search_get(giphyToken, 'water', limit=50, rating='g')
+        gif = random.choices(response.data)
+        channel = client.get_channel(643828501035876363)
+        await channel.send('DRINK WATER\n{}'.format(gif[0].url))
 
 async def packt_check():
     await client.wait_until_ready()

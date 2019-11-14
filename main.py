@@ -66,16 +66,16 @@ async def water():
     while not client.is_closed():
         # Wrap this into a function next time you re-use it.
         now = datetime.datetime.now()
-        next = None
+        next_t = None
         for time in trigger_times:
             if time > now.hour:
-                next = datetime.datetime(year=now.year, month=now.month, 
+                next_t = datetime.datetime(year=now.year, month=now.month, 
                                 day=now.day, hour=time, minute=0, second=0)
                 break
-        if next == None:
+        if next_t == None:
             tomorrow = datetime.timedelta(1) + now
-            next = datetime.datetime(year=tomorrow.year, month=tomorrow.month, day=tomorrow.day, hour=trigger_times[0], minute=0, second=0)
-        sleep_time = (next - now).seconds
+            next_t = datetime.datetime(year=tomorrow.year, month=tomorrow.month, day=tomorrow.day, hour=trigger_times[0], minute=0, second=0)
+        sleep_time = (next_t - now).seconds
         await asyncio.sleep(sleep_time)
 
         g_api = giphy_client.DefaultApi()

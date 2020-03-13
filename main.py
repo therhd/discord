@@ -22,9 +22,6 @@ class MyClient(discord.Client):
         if message.author == self.user:
             return
 
-        if message.content == '!restart': # Should probably check user...
-            await client.logout()
-
         if message.content == '!packtpub':
             await message.channel.send(packt.getDailyString())
         

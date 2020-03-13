@@ -37,4 +37,5 @@ def getFuture(days = 7):
 
 if __name__ == "__main__":
     print(getDailyString())
+    print(getDaily)
     getFuture(7)

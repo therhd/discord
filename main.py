@@ -79,15 +79,15 @@ async def water():
         if next_t == None:
             tomorrow = datetime.timedelta(1) + now
             next_t = datetime.datetime(year=tomorrow.year, month=tomorrow.month, day=tomorrow.day, hour=trigger_times[0], minute=0, second=0)
-        sleep_time = (next_t - now).seconds
+        sleep_time = (next_t - now).seconds + 20
         await asyncio.sleep(sleep_time)
-
-        g_api = giphy_client.DefaultApi()
-        response = g_api.gifs_search_get(giphyToken, 'water', limit=50, rating='g')
-        gif = random.choices(response.data)
-        channel = client.get_channel(643828501035876363)
-        phrase = random.choice(phrases)
-        await channel.send('{} ({})\n{}'.format(phrase.get('text'), phrase.get('language'), gif[0].url))
+        if datetime.datetime.now().weekday() < 5:
+            g_api = giphy_client.DefaultApi()
+            response = g_api.gifs_search_get(giphyToken, 'water', limit=50, rating='g')
+            gif = random.choices(response.data)
+            channel = client.get_channel(643828501035876363)
+            phrase = random.choice(phrases)
+            await channel.send('{} ({})\n{}'.format(phrase.get('text'), phrase.get('language'), gif[0].url))
 
 async def packt_check():
     await client.wait_until_ready()

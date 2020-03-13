@@ -7,7 +7,7 @@ bs4==0.0.1
 certifi==2019.9.11
 chardet==3.0.4
 cryptography==2.1.4
-discord.py==1.2.3
+discord.py==1.2.5
 idna==2.6
 idna-ssl==1.1.0
 keyring==10.6.0

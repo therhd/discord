@@ -108,7 +108,7 @@ async def humble_check():
         for bundle in humble.getBundles():
             if bundle not in known_bundles:
                 known_bundles.append(bundle)
-                channels = [client.get_channel(632020894604328970), client.get_channel(630078078349213707), client.get_channel(687819067985625197)]
+                channels = [client.get_channel(632020894604328970), client.get_channel(630078078349213707)]
                 for channel in channels:
                     await channel.send(humble.bundle_to_link(bundle))
         await asyncio.sleep(60*60)
@@ -120,7 +120,7 @@ async def corona_check():
         curr_stats = mi_corona.getStatsString()
         if known_stats != curr_stats:
             known_stats = curr_stats
-            channels = [client.get_channel(632020894604328970), client.get_channel(630078078349213707)]
+            channels = [client.get_channel(632020894604328970), client.get_channel(630078078349213707), client.get_channel(687819067985625197)]
             for channel in channels:
                 await channel.send(curr_stats)
         await asyncio.sleep(60*60)

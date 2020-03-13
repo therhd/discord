@@ -23,10 +23,11 @@ def getStats():
 
 def getStatsString():
     data = getStats()
-    string = ''
+    string = 'Michigan 2019-nCoV (Covid-19)\n'
     for k,v in data.items():
-        k = k.replace('**', '')
-        string += '{}: **{}**\n'.format(k,v)
+        if k == 'Date' or k == 'Negative for 2019-nCoV' or k == 'Positive for 2019-nCoV':
+            k = k.replace('**', '')
+            string += '{}: **{}**\n'.format(k,v)
     return string
 
 if __name__ == "__main__":

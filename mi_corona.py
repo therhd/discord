@@ -9,8 +9,7 @@ def getStats():
         soup = BeautifulSoup(response.content, 'html.parser')
         tables = soup.find_all('table')
         for table in tables:
-            t = str(table)
-            if 'Positive for 2019-nCoV' in t:
+            if 'Positive for 2019-nCoV' in str(table):
                 data = {}
                 for row in table.find_all('tr'):
                     columns = row.find_all('td')

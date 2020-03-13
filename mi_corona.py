@@ -26,7 +26,7 @@ def getStatsString():
     data = getStats()
     string = ''
     for k,v in data.items():
-        string += '{}: {}\n'.format(k,v)
+        string += '**{}**: {}\n'.format(k,v)
     return string
 
 if __name__ == "__main__":

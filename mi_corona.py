@@ -26,6 +26,7 @@ def getStatsString():
     data = getStats()
     string = ''
     for k,v in data.items():
+        k = k.replace('**', '')
         string += '{}: **{}**\n'.format(k,v)
     return string
 

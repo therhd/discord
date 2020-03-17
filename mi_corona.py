@@ -12,7 +12,6 @@ def getStats():
             if 'Daily Confirmed COVID-19 Cases by County' in str(table):
                 data = {}
                 for row in table.find_all('tr'):
-                    print(str(row))
                     if 'Daily Confirmed COVID-19 Cases by County' not in str(row):
                         columns = row.find_all('td')
                         if len(columns) > 0:

@@ -9,17 +9,19 @@ def getStats():
         soup = BeautifulSoup(response.content, 'html.parser')
         tables = soup.find_all('table')
         for table in tables:
-            if 'Confirmed COVID-19 Cases by County' in str(table):
+            if 'Daily Confirmed COVID-19 Cases by County' in str(table):
                 data = {}
                 for row in table.find_all('tr'):
-                    if 'Confirmed COVID-19 Cases by County' not in str(row):
+                    print(str(row))
+                    if 'Daily Confirmed COVID-19 Cases by County' not in str(row):
                         columns = row.find_all('td')
-                        gross = '\xa0 '
-                        key = str(columns[0].get_text()).replace(gross, '')
-                        val = str(columns[1].get_text()).replace(gross, '')
-                        key = key.replace('\n', '')
-                        val = val.replace('\n', '')
-                        data.update( {key:val} )
+                        if len(columns) > 0:
+                            gross = '\xa0 '
+                            key = str(columns[0].get_text()).replace(gross, '')
+                            val = str(columns[1].get_text()).replace(gross, '')
+                            key = key.replace('\n', '')
+                            val = val.replace('\n', '')
+                            data.update( {key:val} )
         return(data)
     else:
         return(None)

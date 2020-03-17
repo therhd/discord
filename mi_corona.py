@@ -27,7 +27,7 @@ def getStats():
 
 def getStatsString():
     data = getStats()
-    string = 'Michigan 2019-nCoV (Covid-19)\n'
+    string = 'Michigan 2019-nCoV (Covid-19)\nPositive test results from yesterday:\n'
     for k,v in data.items():
         if k != 'Total' and k != 'County':
             k = k.replace('**', '')

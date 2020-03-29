@@ -2,8 +2,8 @@ import requests
 from bs4 import BeautifulSoup
 
 # url = 'https://www.michigan.gov/coronavirus'
-url = 'https://www.michigan.gov/coronavirus/0,9753,7-406-98163-520743--,00.html'
-
+# url = 'https://www.michigan.gov/coronavirus/0,9753,7-406-98163-520743--,00.html'
+url = 'https://www.michigan.gov/coronavirus/0,9753,7-406-98163_98173---,00.html'
 def getStats():
     response = requests.get(url)
     if(response.status_code == 200):

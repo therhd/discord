@@ -117,7 +117,7 @@ async def corona_check():
         curr_stats = mi_corona.getStatsString()
         if known_stats != curr_stats:
             known_stats = curr_stats
-            channels = [client.get_channel(632020894604328970), client.get_channel(630078078349213707), client.get_channel(687819067985625197), client.get_channel(688911379054592041)]
+            channels = [client.get_channel(632020894604328970), client.get_channel(630078078349213707), client.get_channel(687819067985625197), client.get_channel(688911379054592041), client.get_channel(695000610008858764)]
             for channel in channels:
                 await channel.send(curr_stats)
         await asyncio.sleep(60*60)

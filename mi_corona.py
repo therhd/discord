@@ -30,10 +30,10 @@ def getStatsString():
     data = getStats()
     string = 'Michigan 2019-nCoV (Covid-19)\nMore details at {}\n'.format(url)
     for k,v in data.items():
-        if k != 'Total' and k != 'County':
+        if k != 'Totals' and k != 'County':
             k = k.replace('**', '')
             string += '{}: **{}**, '.format(k,v)
-    string = string.rstrip(', ') + '\nTotal: **{}**'.format(data.get('Total'))
+    string = string.rstrip(', ') + '\nTotal: **{}**'.format(data.get('Totals'))
     return string
 
 if __name__ == "__main__":
